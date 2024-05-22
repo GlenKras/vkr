@@ -287,11 +287,11 @@ async def get_user_data_message(message: Message, key, value):
 
 async def correct_check_message(message: Message):
     if user_dict[message.from_user.id]["ptype"] in ('Программное обеспечение', 'Информационные риски'):
-        await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]["time"]}</b>\n"
+        await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]['time']}</b>\n"
                              f"Cумма: <b>{user_dict[message.from_user.id]['sum']}</b>",
                              parse_mode=ParseMode.HTML)
     elif user_dict[message.from_user.id]["ptype"] == "Интеллектуальная собственность":
-        await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]["time"]}</b>\n"
+        await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]['time']}</b>\n"
                              f"Стоимость Интеллектуальной собственности: "
                              f"<b>{user_dict[message.from_user.id]['sum']}</b>",
                              parse_mode=ParseMode.HTML)
