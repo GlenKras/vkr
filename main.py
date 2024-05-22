@@ -176,7 +176,7 @@ async def calc_money(message: Message, state: FSMContext):
     await get_user_data_message(message, "time", message.text)
     if user_dict[message.from_user.id]["ptype"] in ('Программное обеспечение', 'Информационные риски'):
         await message.answer(f"Введите сумму, на которую хотите застраховать\n"
-                             f"{user_dict[message.from_user.id]["ptype"]}\n(1-10000000)")
+                             f"{user_dict[message.from_user.id]['ptype']}\n(1-10000000)")
         await state.set_state(FSMcalc.money_input)
     elif user_dict[message.from_user.id]["ptype"] == "Виртуальные товары":
         await message.answer(f"Введите стоимость Виртуального товара\n(1-10000000)")
@@ -235,7 +235,7 @@ async def time_re_save(message: Message, state: FSMContext):
 async def summ_change(callback: types.CallbackQuery, state: FSMContext):
     if user_dict[callback.from_user.id]["ptype"] in ('Программное обеспечение', 'Информационные риски'):
         await callback.message.answer(f"Введите сумму, на которую хотите застраховать\n"
-                                      f"{user_dict[callback.from_user.id]["ptype"]}\n(1-10000000)")
+                                      f"{user_dict[callback.from_user.id]['ptype']}\n(1-10000000)")
         await state.set_state(FSMcalc.money_input)
     elif user_dict[callback.from_user.id]["ptype"] == "Виртуальные товары":
         await callback.message.answer(f"Введите стоимость Виртуального товара\n(1-10000000)")

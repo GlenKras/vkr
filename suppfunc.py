@@ -288,23 +288,23 @@ async def get_user_data_message(message: Message, key, value):
 async def correct_check_message(message: Message):
     if user_dict[message.from_user.id]["ptype"] in ('Программное обеспечение', 'Информационные риски'):
         await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]["time"]}</b>\n"
-                             f"Cумма: <b>{user_dict[message.from_user.id]["sum"]}</b>",
+                             f"Cумма: <b>{user_dict[message.from_user.id]['sum']}</b>",
                              parse_mode=ParseMode.HTML)
     elif user_dict[message.from_user.id]["ptype"] == "Интеллектуальная собственность":
         await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]["time"]}</b>\n"
                              f"Стоимость Интеллектуальной собственности: "
-                             f"<b>{user_dict[message.from_user.id]["sum"]}</b>",
+                             f"<b>{user_dict[message.from_user.id]['sum']}</b>",
                              parse_mode=ParseMode.HTML)
     elif user_dict[message.from_user.id]["ptype"] == "Виртуальные товары":
         if user_dict[message.from_user.id]["loss"] == '0.02':
             loss = "Да"
         else:
             loss = "Нет"
-        await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]["time"]}</b>\n"
-                             f"Стоимость Виртуального товара: <b>{user_dict[message.from_user.id]["sum"]}</b>\n"
+        await message.answer(f"Длительность страховки: <b>{user_dict[message.from_user.id]['time']}</b>\n"
+                             f"Стоимость Виртуального товара: <b>{user_dict[message.from_user.id]['sum']}</b>\n"
                              f"Аккаунт хорошо защищён: {loss}",
                              parse_mode=ParseMode.HTML)
-    await message.answer(f"<b>{user_dict[message.from_user.id]["fullname"]}</b>, проверьте, верны ли данные?",
+    await message.answer(f"<b>{user_dict[message.from_user.id]['fullname']}</b>, проверьте, верны ли данные?",
                          reply_markup=await correct_check_kb(user_dict[message.from_user.id]["ptype"]),
                          parse_mode=ParseMode.HTML)
 
@@ -315,7 +315,7 @@ async def years_input(callback: types.CallbackQuery):
             f"Введите кол-во лет, на которое хотите застраховать\nИнтеллектуальную собственность\n(1-30)")
     else:
         await callback.message.answer(
-            f"Введите кол-во лет, на которое хотите застраховать\n{user_dict[callback.from_user.id]["ptype"]}\n(1-30)")
+            f"Введите кол-во лет, на которое хотите застраховать\n{user_dict[callback.from_user.id]['ptype']}\n(1-30)")
 
 
 async def product_yn_answer_info(callback: types.CallbackQuery):
@@ -324,11 +324,11 @@ async def product_yn_answer_info(callback: types.CallbackQuery):
     else:
         loss_prob = 0.3
     await get_user_data_callback(callback, "loss", loss_prob)
-    await callback.message.answer(f"Длительность страховки: <b>{user_dict[callback.from_user.id]["time"]}</b>\n"
-                                  f"Стоимость Виртуального товара: <b>{user_dict[callback.from_user.id]["sum"]}</b>\n"
+    await callback.message.answer(f"Длительность страховки: <b>{user_dict[callback.from_user.id]['time']}</b>\n"
+                                  f"Стоимость Виртуального товара: <b>{user_dict[callback.from_user.id]['sum']}</b>\n"
                                   f"Аккаунт хорошо защищён: {callback.data}",
                                   parse_mode=ParseMode.HTML)
-    await callback.message.answer(f"<b>{user_dict[callback.from_user.id]["fullname"]}</b>, проверьте, верны ли данные?",
+    await callback.message.answer(f"<b>{user_dict[callback.from_user.id]['fullname']}</b>, проверьте, верны ли данные?",
                                   reply_markup=await correct_check_kb(user_dict[callback.from_user.id]["ptype"]),
                                   parse_mode=ParseMode.HTML)
 
